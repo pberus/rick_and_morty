@@ -1,25 +1,21 @@
-import './App.css';
-import Cards from './components/Cards.jsx';
-import SearchBar from './components/SearchBar.jsx';
-import characters from './data.js';
+import "./App.css";
+import Cards from "./components/Cards/Cards.jsx";
+import Nav from "./components/Nav/Nav";
+import { useState } from "react";
 
 function App() {
-   
-   function searchHandler(){
-      window.alert("El ID que estoy buscando")
-   }
+  const [characters, setCharacters] = useState([]);
 
-   function closeHandler(){
-      window.alert("Emulamos que se cierra la card")
-   }
+  const onSearch = () => {
+    this.setCharacters({});
+  };
 
-   return (
-      <div className='App'>
-         <SearchBar onSearch={searchHandler} />
-         <Cards characters={characters} onClose={closeHandler}/>
-      
-      </div>
-   );
+  return (
+    <div className='App'>
+      <Nav />
+      <Cards characters={characters} />
+    </div>
+  );
 }
 
 export default App;

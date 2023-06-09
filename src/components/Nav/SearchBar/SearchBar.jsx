@@ -1,4 +1,4 @@
-export default function SearchBar(props) {
+function SearchBar(props) {
    const {onSearch} = props
    //! No necesito todo el props, solo eso
    return (
@@ -8,3 +8,5 @@ export default function SearchBar(props) {
       </div>
    );
 }
+
+export default SearchBar
