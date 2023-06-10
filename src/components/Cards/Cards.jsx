@@ -1,25 +1,15 @@
 import Card from "../Card/Card";
+import React from "react";
 
-function Cards({ characters }) {
-  const onClose = () => {
-    window.alert("Emulamos que se cierra la card");
-  };
-
+function Cards({ characters, onClose }) {
   return (
-    <>
-      {characters.map(({ name, species, gender, image, id }) => {
+    <div>
+      {characters.map((character) => {
         return (
-          <Card
-            key={id}
-            name={name}
-            species={species}
-            gender={gender}
-            image={image}
-            onClose={onClose}
-          />
+          <Card key={character.id} character={character} onClose={onClose} />
         );
       })}
-    </>
+    </div>
   );
 }
 

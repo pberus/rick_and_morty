@@ -1,13 +1,12 @@
+import React from "react";
 import SearchBar from "./SearchBar/SearchBar";
 
-function Nav() {
-  function searchHandler() {
-    window.alert("El ID que estoy buscando");
-  }
+function Nav({onSearch, random}) {
 
   return (
     <div>
-      <SearchBar onSearch={searchHandler} />
+      <SearchBar onSearch={onSearch} />
+      <button onClick={random}>ADD RANDOM</button>
     </div>
   );
 }
