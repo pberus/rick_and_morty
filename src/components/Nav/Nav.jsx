@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
-function Nav({onSearch, random}) {
+function Nav({onSearch, random, logout}) {
 
   return (
     <div>
@@ -10,6 +10,7 @@ function Nav({onSearch, random}) {
       <button onClick={random}>ADD RANDOM</button>
       <Link to="/about"><button>About</button></Link>
       <Link to="/home"><button>Home</button></Link>
+      <button onClick={logout}>logout</button>
     </div>
   );
 }
