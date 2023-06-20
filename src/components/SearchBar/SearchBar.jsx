@@ -13,7 +13,8 @@ function SearchBar({ onSearch }) {
       <input type='search' value={id} onChange={handleChange} />
       <button
         onClick={() => {
-          onSearch(id);
+          onSearch(id)
+          setId("")
         }}
       >
         Agregar

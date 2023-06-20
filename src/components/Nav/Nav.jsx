@@ -10,6 +10,7 @@ function Nav({onSearch, random, logout}) {
       <button onClick={random}>ADD RANDOM</button>
       <Link to="/about"><button>About</button></Link>
       <Link to="/home"><button>Home</button></Link>
+      <Link to="/favorites"><button>Favorites</button></Link>
       <button onClick={logout}>logout</button>
     </div>
   );

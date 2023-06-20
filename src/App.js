@@ -8,8 +8,11 @@ import About from "./views/About/About";
 import Detail from "./views/Detail/Detail";
 import Landing from "./views/Landing/Landing";
 import Error from "./views/Error/Error";
+import Favorites from "./views/Favorites/Favorites";
+import { connect } from "react-redux";
+import { removeFav } from "./redux/actions";
 
-function App() {
+function App({removeFav}) {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
 
@@ -55,6 +58,7 @@ function App() {
     setCharacters(
       characters.filter((character) => character.id !== Number(id))
     );
+    removeFav(id)
   };
 
   const randomHandler = () => {
@@ -88,17 +92,25 @@ function App() {
         <Nav logout={logout} onSearch={onSearch} random={randomHandler} />
       )}
       <Routes>
-        <Route path='/' element={<Landing login={login}/>}></Route>
+        <Route path='/' element={<Landing login={login}/>} />
         <Route
           path='/home'
-          element={<Cards characters={characters} onClose={onClose} />}
-        ></Route>
-        <Route path='/about' element={<About />}></Route>
-        <Route path='/detail/:id' element={<Detail />}></Route>
-        <Route path='*' element={<Error />}></Route>
+          element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/detail/:id' element={<Detail />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path='*' element={<Error />} />
       </Routes>
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    removeFav: (id) =>{
+      dispatch(removeFav(id))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
