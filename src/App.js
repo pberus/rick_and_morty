@@ -20,7 +20,7 @@ function App({removeFav}) {
   const navigate = useNavigate();
 
   const EMAIL = "ejemplo@gmail.com";
-  const PASSWORD = "password";
+  const PASSWORD = "buenas";
 
   useEffect(() => {
     !access && navigate("/");
