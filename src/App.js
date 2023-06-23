@@ -7,14 +7,16 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import About from "./views/About/About";
 import Detail from "./views/Detail/Detail";
 import Landing from "./views/Landing/Landing";
-import Error from "./views/Error/Error"
+import Error from "./views/Error/Error";
 import Favorites from "./views/Favorites/Favorites";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeFav } from "./redux/actions";
 
-function App({removeFav}) {
+const App = () => {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
+
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,26 +33,30 @@ function App({removeFav}) {
       setAccess(true);
       navigate("/home");
     } else if (userData.email !== EMAIL) {
-      alert("El email es incorrecto")
-    } else  {
-      alert("La contraseña es incorrecta")
+      alert("El email es incorrecto");
+    } else {
+      alert("La contraseña es incorrecta");
     }
   }
 
   const logout = () => {
-    setAccess(false)
-    navigate("/")
-  }
+    setAccess(false);
+    navigate("/");
+  };
 
   const onSearch = (id) => {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(
       ({ data }) => {
         if (data.name) {
-          const idExiste = characters.some(character => character.id === data.id)
-          if (data.id && !idExiste) setCharacters((oldChars) => [...oldChars, data]);
-          else window.alert("¡Ya agregaste un personaje con esa ID! Pruebe otro") 
+          const idExiste = characters.some(
+            (character) => character.id === data.id
+          );
+          if (data.id && !idExiste)
+            setCharacters((oldChars) => [...oldChars, data]);
+          else
+            window.alert("¡Ya agregaste un personaje con esa ID! Pruebe otro");
         } else {
-           window.alert("¡No hay personajes con este ID!");
+          window.alert("¡No hay personajes con este ID!");
         }
       }
     );
@@ -60,7 +66,7 @@ function App({removeFav}) {
     setCharacters(
       characters.filter((character) => character.id !== Number(id))
     );
-    removeFav(id)
+    dispatch(removeFav(id));
   };
 
   const randomHandler = () => {
@@ -97,22 +103,15 @@ function App({removeFav}) {
         <Route path='/' element={<Landing login={login} />} />
         <Route
           path='/home'
-          element={<Cards characters={characters} onClose={onClose} />} />
+          element={<Cards characters={characters} onClose={onClose} />}
+        />
         <Route path='/about' element={<About />} />
         <Route path='/detail/:id' element={<Detail />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path='/favorites' element={<Favorites />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </div>
   );
-}
+};
 
-const mapDispatchToProps = (dispatch)=>{
-  return {
-    removeFav: (id) =>{
-      dispatch(removeFav(id))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

@@ -1,26 +1,26 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
-function SearchBar({ onSearch }) {
+const SearchBar = ({ onSearch }) => {
   const [id, setId] = useState("");
 
   const handleChange = (event) => {
-    setId(event.target.value);
+    const inputValue = event.target.value;
+    if (!isNaN(inputValue) && inputValue >0) {
+      setId(inputValue);
+    }
+  };
+
+  const handleSearch = () => {
+    onSearch(id);
+    setId("");
   };
 
   return (
     <div>
-      <input type='search' value={id} onChange={handleChange} />
-      <button
-        onClick={() => {
-          onSearch(id)
-          setId("")
-        }}
-      >
-        Agregar
-      </button>
+      <input type='number' value={id} onChange={handleChange} />
+      <button onClick={handleSearch}>Agregar</button>
     </div>
   );
-}
+};
 
 export default SearchBar;
