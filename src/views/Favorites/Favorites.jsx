@@ -1,10 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import Cards from "../../components/Cards/Cards";
 import { filterCards, orderCards, resetFav } from "../../redux/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Favorites() {
+  useEffect(() => {
+    dispatch(resetFav());
+  }, []);
+
   const [aux, setAux] = useState(false);
+
+  const [order, setOrder] = useState("");
+  const [filter, setFilter] = useState("");
 
   const { myFavorites } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -14,29 +21,43 @@ export default function Favorites() {
     const value = event.target.value;
     dispatch(orderCards(value));
     setAux(true);
+    setOrder(value);
   };
 
   const handleFilter = (event) => {
     event.preventDefault();
     const value = event.target.value;
     dispatch(filterCards(value));
+    setFilter(value);
   };
 
   const resetButton = () => {
     dispatch(resetFav());
+    setOrder("");
+    setFilter("");
   };
 
   return (
     <div>
-      <select onChange={handleOrder} name='order' defaultValue={"DEFAULT"}>
-        <option value='DEFAULT' disable>
+      <select
+        value={order}
+        onChange={handleOrder}
+        name='order'
+        defaultValue={""}
+      >
+        <option value='' disabled>
           Select Order
         </option>
         <option value='Ascendente'>Ascendente</option>
         <option value='Descendente'>Descendente</option>
       </select>
-      <select onChange={handleFilter} name='filter' defaultValue={"DEFAULT"}>
-        <option value='DEFAULT' disable>
+      <select
+        value={filter}
+        onChange={handleFilter}
+        name='filter'
+        defaultValue={""}
+      >
+        <option value='' disabled>
           Select Filter
         </option>
         <option value='Male'>Male</option>

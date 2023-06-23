@@ -7,7 +7,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import About from "./views/About/About";
 import Detail from "./views/Detail/Detail";
 import Landing from "./views/Landing/Landing";
-import Error from "./views/Error/Error";
+import Error from "./views/Error/Error"
 import Favorites from "./views/Favorites/Favorites";
 import { connect } from "react-redux";
 import { removeFav } from "./redux/actions";
@@ -46,9 +46,11 @@ function App({removeFav}) {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(
       ({ data }) => {
         if (data.name) {
-          if (data.id) setCharacters((oldChars) => [...oldChars, data]);
+          const idExiste = characters.some(character => character.id === data.id)
+          if (data.id && !idExiste) setCharacters((oldChars) => [...oldChars, data]);
+          else window.alert("¡Ya agregaste un personaje con esa ID! Pruebe otro") 
         } else {
-          window.alert("¡No hay personajes con este ID!");
+           window.alert("¡No hay personajes con este ID!");
         }
       }
     );
@@ -92,7 +94,7 @@ function App({removeFav}) {
         <Nav logout={logout} onSearch={onSearch} random={randomHandler} />
       )}
       <Routes>
-        <Route path='/' element={<Landing login={login}/>} />
+        <Route path='/' element={<Landing login={login} />} />
         <Route
           path='/home'
           element={<Cards characters={characters} onClose={onClose} />} />
