@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
+import style from "./Card.module.css"
 
 export default function Card({ character, onClose }) {
   const { id, name, species, gender, image } = character;
@@ -33,7 +34,7 @@ export default function Card({ character, onClose }) {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className={style.Card}>
       {isFav ? (
         <button onClick={() => handleFavorite(id)}>❤️</button>
       ) : (
