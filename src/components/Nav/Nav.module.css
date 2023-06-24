@@ -1,0 +1,18 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons{
+    display: flex;
+    width: 60%;
+    background-color: aqua;
+}
+
+.searchBar{
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 40%;
+}

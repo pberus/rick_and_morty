@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import style from "./SearchBar.module.css"
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, random }) => {
   const [id, setId] = useState("");
 
   const handleChange = (event) => {
@@ -16,9 +17,10 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div>
-      <input type='number' value={id} onChange={handleChange} />
-      <button onClick={handleSearch}>Agregar</button>
+    <div className={style.container}>
+      <input className={style.containerElement} type='number' value={id} onChange={handleChange} placeholder="Introduce el ID"/>
+      <button className={style.containerElement} onClick={handleSearch}>Agregar</button>
+      <button className={style.containerElement} onClick={random}>ADD RANDOM</button>
     </div>
   );
 };

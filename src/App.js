@@ -1,5 +1,5 @@
 import "./App.css";
-import Cards from "./components/Cards/Cards.jsx";
+import Home from "./views/Home/Home";
 import Nav from "./components/Nav/Nav";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -103,7 +103,7 @@ const App = () => {
         <Route path='/' element={<Landing login={login} />} />
         <Route
           path='/home'
-          element={<Cards characters={characters} onClose={onClose} />}
+          element={<Home characters={characters} onClose={onClose} />}
         />
         <Route path='/about' element={<About />} />
         <Route path='/detail/:id' element={<Detail />} />
