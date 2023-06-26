@@ -4,7 +4,7 @@ import Cards from "../../components/Cards/Cards";
 
 const Home = ({ onClose, characters }) => {
   return (
-    <div>
+    <div className={style.homeContainer}>
       <h1>HOME</h1>
       <div>
         <Cards characters={characters} onClose={onClose} />

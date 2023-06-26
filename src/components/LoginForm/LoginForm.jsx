@@ -1,6 +1,6 @@
 import { useState } from "react";
 import validate from "./validate";
-import style from "./LoginForm.module.css"
+import style from "./LoginForm.module.css";
 
 const LoginForm = ({ login }) => {
   const [userData, setUserData] = useState({
@@ -13,7 +13,7 @@ const LoginForm = ({ login }) => {
     password: "",
   });
 
-  const [showErrors, setShowErrors] = useState(false)
+  const [showErrors, setShowErrors] = useState(false);
 
   const handleChange = (event) => {
     const property = event.target.name;
@@ -32,16 +32,14 @@ const LoginForm = ({ login }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setErrors(validate(userData))
+    setErrors(validate(userData));
     setShowErrors(true);
     login(userData);
   };
 
   return (
     <div className={style.formContainer}>
-      <div className={style.title}>
-        <h1>Inicia Sesion</h1>
-      </div>
+      <h1 className={style.title}>Inicia Sesion</h1>
       <form onSubmit={handleSubmit}>
         <div className={style.credentials}>
           <label htmlFor='email'>EMAIL</label>

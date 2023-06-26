@@ -43,6 +43,7 @@ export default function Favorites() {
       <h1>Favorites</h1>
       <div className={style.selectContainer}>
         <select
+          className={style.buttons}
           value={order}
           onChange={handleOrder}
           name='order'
@@ -55,6 +56,7 @@ export default function Favorites() {
           <option value='Descendente'>Descendente</option>
         </select>
         <select
+          className={style.buttons}
           value={filter}
           onChange={handleFilter}
           name='filter'
@@ -68,7 +70,7 @@ export default function Favorites() {
           <option value='Genderless'>Genderless</option>
           <option value='unknown'>unknown</option>
         </select>
-        <button onClick={resetButton}>Reset</button>
+        <button className={style.buttons} onClick={resetButton}>Reset</button>
       </div>
       <Cards characters={myFavorites} />
     </div>
