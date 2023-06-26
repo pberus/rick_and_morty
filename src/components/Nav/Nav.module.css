@@ -5,14 +5,27 @@
 
 .buttons{
     display: flex;
-    width: 60%;
-    background-color: aqua;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    background-color: #12b0c9;
+}
+
+.buttons button{
+    color: greenyellow;
+    background: gray;
 }
 
 .searchBar{
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     flex-wrap: wrap;
-    height: 50px;
-    width: 40%;
+}
+
+.logoutBtn{
+    display: flex;
+    align-items: center;
+    height: 50%;
+    margin-left: 5px;
 }

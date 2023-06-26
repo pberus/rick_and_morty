@@ -1,5 +1,6 @@
 import { useState } from "react";
 import validate from "./validate";
+import style from "./LoginForm.module.css"
 
 const LoginForm = ({ login }) => {
   const [userData, setUserData] = useState({
@@ -11,6 +12,8 @@ const LoginForm = ({ login }) => {
     email: "",
     password: "",
   });
+
+  const [showErrors, setShowErrors] = useState(false)
 
   const handleChange = (event) => {
     const property = event.target.name;
@@ -29,33 +32,38 @@ const LoginForm = ({ login }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors(validate(userData))
+    setShowErrors(true);
     login(userData);
   };
 
   return (
-    <div>
+    <div className={style.formContainer}>
+      <div className={style.title}>
+        <h1>Inicia Sesion</h1>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='email'></label>
+        <div className={style.credentials}>
+          <label htmlFor='email'>EMAIL</label>
           <input
             onChange={handleChange}
             value={userData.email}
             name='email'
             type='text'
           />
-          {errors.email && <span>{errors.email}</span>}
+          {showErrors && errors.email && <span>{errors.email}</span>}
         </div>
-        <div>
-          <label htmlFor='password'></label>
+        <div className={style.credentials}>
+          <label htmlFor='password'>PASSWORD</label>
           <input
             onChange={handleChange}
             value={userData.password}
             name='password'
             type='password'
           />
-          {errors.password && <span>{errors.password}</span>}
+          {showErrors && errors.password && <span>{errors.password}</span>}
         </div>
-        <button>Submit</button>
+        <button className={style.loginBtn}>Login</button>
       </form>
     </div>
   );

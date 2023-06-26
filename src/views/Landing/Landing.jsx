@@ -1,9 +1,11 @@
-import LoginForm from "../../components/LoginForm/LoginForm";
+import {LoginForm} from "../../components"
+import style from "./Landing.module.css"
+import img from "../../components/assets/images/rick-and-morty-logo.jpeg"
 
 function Landing({login}) {
   return (
-    <div>
-      <h1>Esto es el landing, para generar cards iniciar sesion</h1>
+    <div className={style.container}>
+      <img src={img } alt="rick-and-morty-logo"/>
       <LoginForm login={login}/>
     </div>
   );

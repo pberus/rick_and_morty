@@ -27,7 +27,7 @@ function Nav({ onSearch, random, logout }) {
         <Link to='/favorites'>
           <button>Favorites</button>
         </Link>
-        <button onClick={logout}>logout</button>
+        <button className={style.logoutBtn} onClick={logout}>logout</button>
       </div>
 
       <div className={style.searchBar}>

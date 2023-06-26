@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cards from "../../components/Cards/Cards";
 import { filterCards, orderCards, resetFav } from "../../redux/actions";
 import { useEffect, useState } from "react";
+import style from "./Favorites.module.css";
 
 export default function Favorites() {
   useEffect(() => {
@@ -38,34 +39,37 @@ export default function Favorites() {
   };
 
   return (
-    <div>
-      <select
-        value={order}
-        onChange={handleOrder}
-        name='order'
-        defaultValue={""}
-      >
-        <option value='' disabled>
-          Select Order
-        </option>
-        <option value='Ascendente'>Ascendente</option>
-        <option value='Descendente'>Descendente</option>
-      </select>
-      <select
-        value={filter}
-        onChange={handleFilter}
-        name='filter'
-        defaultValue={""}
-      >
-        <option value='' disabled>
-          Select Filter
-        </option>
-        <option value='Male'>Male</option>
-        <option value='Female'>Female</option>
-        <option value='Genderless'>Genderless</option>
-        <option value='unknown'>unknown</option>
-      </select>
-      <button onClick={resetButton}>Reset</button>
+    <div className={style.favContainer}>
+      <h1>Favorites</h1>
+      <div className={style.selectContainer}>
+        <select
+          value={order}
+          onChange={handleOrder}
+          name='order'
+          defaultValue={""}
+        >
+          <option value='' disabled>
+            Select Order
+          </option>
+          <option value='Ascendente'>Ascendente</option>
+          <option value='Descendente'>Descendente</option>
+        </select>
+        <select
+          value={filter}
+          onChange={handleFilter}
+          name='filter'
+          defaultValue={""}
+        >
+          <option value='' disabled>
+            Select Filter
+          </option>
+          <option value='Male'>Male</option>
+          <option value='Female'>Female</option>
+          <option value='Genderless'>Genderless</option>
+          <option value='unknown'>unknown</option>
+        </select>
+        <button onClick={resetButton}>Reset</button>
+      </div>
       <Cards characters={myFavorites} />
     </div>
   );

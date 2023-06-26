@@ -11,11 +11,16 @@
     margin: 10px;
     border-radius: 7px;
     border-width: 1px;
+    background: #12b0c9;
+    color: greenyellow;
 }
 
 .container input{
     width: 50%;
 }
 
+.containerElement::placeholder{
+    color: greenyellow;
+}
 
 
