@@ -1,6 +1,6 @@
 import style from "./About.module.css";
 
-function About() {
+const About = () => {
   return (
     <div className={style.aboutContainer}>
       <h1>ABOUT</h1>
@@ -9,6 +9,6 @@ function About() {
       <h2>Desarrollado por: PEDRO BERUSTEIN</h2>
     </div>
   );
-}
+};
 
 export default About;

@@ -1,10 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
-import style from "./Card.module.css"
+import style from "./Card.module.css";
 
-export default function Card({ character, onClose }) {
+const Card = ({ character, onClose }) => {
   const { id, name, species, gender, image } = character;
 
   const myFavorites = useSelector((state) => state.myFavorites);
@@ -35,29 +35,32 @@ export default function Card({ character, onClose }) {
 
   return (
     <div className={style.Card}>
-      {isFav ? (
-        <button onClick={() => handleFavorite(id)}>❤️</button>
-      ) : (
-        <button onClick={() => handleFavorite(character)}>🤍</button>
-      )}
-      {location.pathname === "/home" && (
-        <button
-          onClick={() => {
-            onClose(id);
-          }}
-        >
-          X
-        </button>
-      )}
-      <Link to={`/detail/${id}`}>
-        <h2>{name}</h2>
-      </Link>
-      {location.pathname === "/favorites" && (
-        <button onClick={() => navigate("/home")}>Volver</button>
-      )}
-      <h2>{species}</h2>
-      <h2>{gender}</h2>
-      <img src={image} alt={name} />
+      <div className={style.buttons}>
+        {isFav ? (
+          <button onClick={() => handleFavorite(id)}>❤️</button>
+        ) : (
+          <button onClick={() => handleFavorite(character)}>🤍</button>
+        )}
+        {location.pathname === "/home" && (
+          <button
+            onClick={() => {
+              onClose(id);
+            }}
+          >
+            X
+          </button>
+        )}
+      </div>
+      <div className={style.details}>
+        <NavLink to={`/detail/${id}`} className={style.name}>
+          <h2>{name}</h2>
+        </NavLink>
+        <h3>{species}</h3>
+        <h3>{gender}</h3>
+        <img src={image} alt={name} />
+      </div>
     </div>
   );
-}
+};
+
+export default Card;

@@ -1,8 +1,8 @@
 import Card from "../Card/Card";
 import React from "react";
-import style from "./Cards.module.css"
+import style from "./Cards.module.css";
 
-function Cards({ characters, onClose }) {
+const Cards = ({ characters, onClose }) => {
   return (
     <div className={style.cardsContainer}>
       {characters?.map((character) => {
@@ -12,6 +12,6 @@ function Cards({ characters, onClose }) {
       })}
     </div>
   );
-}
+};
 
 export default Cards;

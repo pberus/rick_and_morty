@@ -1,14 +1,9 @@
 import "./App.css";
-import Home from "./views/Home/Home";
-import Nav from "./components/Nav/Nav";
+import {Home, About, Detail, Landing, Error, Favorites} from "./views"
+import { Nav } from "./components";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import About from "./views/About/About";
-import Detail from "./views/Detail/Detail";
-import Landing from "./views/Landing/Landing";
-import Error from "./views/Error/Error";
-import Favorites from "./views/Favorites/Favorites";
 import { useDispatch } from "react-redux";
 import { removeFav } from "./redux/actions";
 
@@ -48,13 +43,13 @@ const App = () => {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(
       ({ data }) => {
         if (data.name) {
-          const idExiste = characters.some(
+          const idYaAgregado = characters.some(
             (character) => character.id === data.id
           );
-          if (data.id && !idExiste)
-            setCharacters((oldChars) => [...oldChars, data]);
-          else
-            window.alert("¡Ya agregaste un personaje con esa ID! Pruebe otro");
+          if (data.id && !idYaAgregado)
+            {setCharacters((oldChars) => [...oldChars, data]);}
+           else
+            {window.alert("¡Ya agregaste un personaje con esa ID! Pruebe otro");}
         } else {
           window.alert("¡No hay personajes con este ID!");
         }

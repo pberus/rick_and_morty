@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import style from "./Nav.module.css";
 
-function Nav({ onSearch, random, logout }) {
+const Nav = ({ onSearch, random, logout }) => {
   const handleLogout = useCallback(() => {
     logout();
   }, [logout]);
@@ -27,16 +27,16 @@ function Nav({ onSearch, random, logout }) {
         <Link to='/favorites'>
           <button>Favorites</button>
         </Link>
-        <button className={style.logoutBtn} onClick={logout}>logout</button>
+        <button className={style.logoutBtn} onClick={logout}>
+          logout
+        </button>
       </div>
 
       <div className={style.searchBar}>
-        <SearchBar onSearch={onSearch} random={random}/>
+        <SearchBar onSearch={onSearch} random={random} />
       </div>
     </div>
   );
-}
+};
 
 export default Nav;
-
-//Puedo poner NavLink para darle estilos a los link

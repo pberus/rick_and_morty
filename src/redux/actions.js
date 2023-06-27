@@ -1,8 +1,8 @@
 export const ADD_FAV = "ADD_FAV";
 export const REMOVE_FAV = "REMOVE_FAV";
-export const FILTER = "FILTER"
-export const ORDER = "ORDER"
-export const RESET = "RESET"
+export const FILTER = "FILTER";
+export const ORDER = "ORDER";
+export const RESET = "RESET";
 
 export const addFav = (character) => {
   return {
@@ -18,22 +18,22 @@ export const removeFav = (id) => {
   };
 };
 
-export const filterCards = (gender)=>{
+export const filterCards = (gender) => {
   return {
     type: FILTER,
     payload: gender,
-  }
-}
+  };
+};
 
-export const orderCards = (order)=>{
+export const orderCards = (order) => {
   return {
     type: ORDER,
     payload: order,
-  }
-}
+  };
+};
 
-export const resetFav = () =>{
+export const resetFav = () => {
   return {
     type: RESET,
-  }
-}
+  };
+};

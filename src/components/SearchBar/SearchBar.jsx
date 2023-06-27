@@ -9,8 +9,12 @@ const SearchBar = ({ onSearch, random }) => {
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
-    if (!isNaN(inputValue) && inputValue > 0) {
-      setId(inputValue);
+    if (!isNaN(inputValue) && inputValue >= 0) {
+      if (inputValue > 827) {
+        window.alert("Existen 826 personajes");
+      } else {
+        setId(inputValue);
+      }
     }
   };
 

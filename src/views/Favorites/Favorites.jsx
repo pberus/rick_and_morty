@@ -4,7 +4,7 @@ import { filterCards, orderCards, resetFav } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import style from "./Favorites.module.css";
 
-export default function Favorites() {
+const Favorites = () => {
   useEffect(() => {
     dispatch(resetFav());
   }, []);
@@ -70,9 +70,13 @@ export default function Favorites() {
           <option value='Genderless'>Genderless</option>
           <option value='unknown'>unknown</option>
         </select>
-        <button className={style.buttons} onClick={resetButton}>Reset</button>
+        <button className={style.buttons} onClick={resetButton}>
+          Reset
+        </button>
       </div>
       <Cards characters={myFavorites} />
     </div>
   );
-}
+};
+
+export default Favorites;
