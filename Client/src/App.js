@@ -40,24 +40,21 @@ const App = () => {
   };
 
   const onSearch = (id) => {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-        if (data.name) {
-          const idYaAgregado = characters.some(
-            (character) => character.id === data.id
-          );
-          if (data.id && !idYaAgregado) {
-            setCharacters((oldChars) => [...oldChars, data]);
-          } else {
-            window.alert("¡Ya agregaste un personaje con esa ID! Pruebe otro");
-          }
-        }
-      })
-      .catch((error) => {
-        window.alert(
-          `Ocurrio un error (${error}).\n¡No hay personajes con este ID!`
+    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+      ({ data }) => {
+        const char = characters?.find(
+          (character) => character.id === Number(data.id)
         );
-      });
+
+        if (char) {
+          alert("Ya agregaste un personaje con ese ID");
+        } else if (data.id) {
+          setCharacters((oldChars) => [...oldChars, data]);
+        } else {
+          alert("¡No hay personajes con este ID!");
+        }
+      }
+    );
   };
 
   const onClose = (id) => {
