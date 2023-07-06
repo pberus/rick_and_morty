@@ -9,7 +9,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ADD_FAV:
       return { ...state, myFavorites: payload, allCharacters: payload };
     case REMOVE_FAV:
-      return { ...state, myFavorites: payload };
+      return { ...state, myFavorites: payload, allCharacters: payload };
     case FILTER:
       return {
         ...state,
