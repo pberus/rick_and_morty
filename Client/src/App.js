@@ -7,6 +7,8 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { removeFav } from "./redux/actions";
 
+const URL = "http://localhost:3001/rickandmorty/";
+
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
@@ -16,21 +18,22 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const EMAIL = "ejemplo@gmail.com";
-  const PASSWORD = "buenas";
-
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
 
-  const login = (userData) => {
-    const { email, password } = userData;
-    const URL = "http://localhost:3001/rickandmorty/login/";
-    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+  const login = async (userData) => {
+    try {
+      const { email, password } = userData;
+      const loginURL = URL + `login/?email=${email}&password=${password}`;
+
+      const { data } = await axios(loginURL);
       const { access } = data;
-      setAccess(data);
+      setAccess(access);
       access && navigate("/home");
-    });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const logout = () => {
@@ -38,28 +41,28 @@ const App = () => {
     navigate("/");
   };
 
-  const onSearch = (id) => {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-      ({ data }) => {
-        const char = characters?.find(
-          (character) => character.id === Number(data.id)
-        );
+  const onSearch = async (id) => {
+    try {
+      const searchURL = URL + `character/${id}`;
+      const { data } = await axios(searchURL);
 
-        if (char) {
-          alert("Ya agregaste un personaje con ese ID");
-        } else if (data.id) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          alert("¡No hay personajes con este ID!");
-        }
+      const charRepeted = characters?.find(
+        (character) => character.id === data.id
+      );
+      if (charRepeted) {
+        return alert("Ya agregaste un personaje con ese ID");
       }
-    );
+
+      if (data.name) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      }
+    } catch (error) {
+      alert("¡No hay personajes con este ID!");
+    }
   };
 
   const onClose = (id) => {
-    setCharacters(
-      characters.filter((character) => character.id !== id)
-    );
+    setCharacters(characters.filter((character) => character.id !== id));
     dispatch(removeFav(id));
   };
 
@@ -73,7 +76,8 @@ const App = () => {
 
     if (!haveIt.includes(random)) {
       haveIt.push(random);
-      fetch(`http://localhost:3001/rickandmorty/character/${random}`)
+      const randomHandlerURL = URL + `character/${random}`;
+      fetch(randomHandlerURL)
         .then((response) => response.json())
         .then((data) => {
           if (data.name) {
