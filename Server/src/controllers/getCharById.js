@@ -10,7 +10,7 @@ const getCharById = async (req, res) => {
     if (!name) throw new Error(`Faltan datos del personaje con ID: ${id}`);
 
     const character = {
-      id,
+      id: +id,
       status,
       name,
       species,
