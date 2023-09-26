@@ -1,0 +1,39 @@
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  border: solid gray;
+  width: auto;
+  justify-content: center;
+  padding: 10px;
+  background-color: #12b0c9;
+}
+
+.detailImg img {
+  background-size: cover;
+  height: 100%;
+}
+
+.details h1 {
+  display: flex;
+  justify-content: center;
+  color: #12b0c9;
+  -webkit-text-stroke: 2px black;
+  border: solid black 5px;
+  background-color: greenyellow;
+  padding: 5px;
+}
+
+.details h3 {
+  display: flex;
+  justify-content: center;
+  color: black;
+  -webkit-text-stroke: 0.5px greenyellow;
+}
+
+.details button {
+  background: rgb(37, 36, 36);
+  color: greenyellow;
+  border-radius: 10px;
+}

@@ -1,0 +1,43 @@
+.Card {
+  background-color: #12b0c9;
+  border: solid gray 3px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ margin: 2px;
+}
+
+.buttons button {
+  background: rgb(37, 36, 36);
+  color: greenyellow;
+  border-radius: 20px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.details h3 {
+  color: black;
+  -webkit-text-stroke: 0.5px greenyellow;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  color: greenyellow;
+  background-color: black;
+  -webkit-text-stroke: 0.1px #12b0c9;
+  padding: 5px;
+  border-bottom: solid;
+  border-top: solid;
+}
