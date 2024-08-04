@@ -34,8 +34,8 @@ const Detail = () => {
         <h3>STATUS | {status}</h3>
         <h3>GENDER | {gender}</h3>
         <h3>SPECIE | {species}</h3>
-        <h3>ORIGIN | {origin?.name}</h3>
-        <h3>LOCATION | {location?.name}</h3>
+        <h3>ORIGIN | {origin?.name}</h3> {/*Tengo que poner "?" porque origin es un objeto y si no lo evaluo antes da error*/}
+        <h3>LOCATION | {location?.name}</h3> {/*Lo mismo aca*/}
       </div>
       <div className={style.detailImg}>
         <img src={image} alt={name} />
